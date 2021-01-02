@@ -25,6 +25,7 @@
 
    * Get the basic structure in place.
    *  Just conv layers. No batch norm,dropouts or image augmentations.
+   * [link](S5_AssignmentSolutionStep1.ipynb)
 
    **Result:** 
 
@@ -46,6 +47,7 @@
 * Use the structure from Step1 as the reference, and reduce the number of parameters below 10k.
 *  Batch norm layers were added.
 * Use GAP instead of conv layer towards the output , reduce the number of parameters.
+* [link](S5_AssignmentSolutionStep2.ipynb)
 
 **Result:** 
 
@@ -69,6 +71,7 @@
 * Use the model from Step2.
 *  Reduce the batch size from 128 to 64.
 * Use RandomRotation for image augmentation with -7.0 and 7.0 degrees.
+* [link](S5_AssignmentSolutionStep3.ipynb)
 
 **Result:** 
 
@@ -90,6 +93,7 @@
 
 * Use the model from Step3.  
 * Check if learning rate scheduling can help to improve test accuracy.
+* [link](S5_AssignmentSolutionStep4.ipynb)
 
 **Result:** 
 
