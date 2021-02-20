@@ -25,7 +25,6 @@ class ModelTrainer:
             m = data.shape[0]
             optimizer.zero_grad()
             y_pred = model(data)
-            print(y_pred.shape, target.shape)
             loss = criterion(y_pred, target)
 
             if l1_penalty > 0:
@@ -56,7 +55,7 @@ class ModelTrainer:
                 )
             )
    
-        # tqdm._instances.clear()
+        return train_loss
 
     def test(self, model, device, test_loader, criterion, l1_penalty=0):
         """Test and get test accuracy."""
@@ -91,3 +90,4 @@ class ModelTrainer:
                 )
             )
             self.test_acc.append(100. * correct / len(test_loader.dataset))
+            return test_loss

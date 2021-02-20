@@ -12,7 +12,7 @@ class ModelTrainer:
         self.train_acc = []
         self.test_acc = []
 
-    def train(self, model, device, train_loader, optimizer, epoch, criterion, l1_penalty=0):
+    def train(self, model, device, train_loader, optimizer, epoch, l1_penalty=0):
         """Train and get accuracy.."""
         model.train()
         pbar = train_loader#tqdm(train_loader)
@@ -25,8 +25,7 @@ class ModelTrainer:
             m = data.shape[0]
             optimizer.zero_grad()
             y_pred = model(data)
-            print(y_pred.shape, target.shape)
-            loss = criterion(y_pred, target)
+            loss = F.nll_loss(y_pred, target)
 
             if l1_penalty > 0:
                 l1 =0
@@ -58,7 +57,7 @@ class ModelTrainer:
    
         # tqdm._instances.clear()
 
-    def test(self, model, device, test_loader, criterion, l1_penalty=0):
+    def test(self, model, device, test_loader, l1_penalty=0):
         """Test and get test accuracy."""
         model.eval()
         test_loss = 0
@@ -68,7 +67,7 @@ class ModelTrainer:
                 data, target = data.to(device), target.to(device)
                 m = data.shape[0]
                 output = model(data)
-                loss = criterion(output, target).item()  # sum up batch loss
+                loss = F.nll_loss(output, target, reduction='sum').item()  # sum up batch loss
                 if l1_penalty > 0:
                     l1 =0
                     for p in model.parameters():
