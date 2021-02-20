@@ -27,3 +27,11 @@ S10-Assignment-Solution Questions:
 
 ## Solution:
 
+- LRFinder.py : has the logic to implement learning rate finder. The optimal learning rtae was found to be 8.42E-02.
+- ReduceLROnPlateau is used while training the model
+- The model is trained on CIFAR10 dataset for 50 epochs.
+- For the 50th epoch training accuracy was 98.37% and validation accuracy was 91.45%.
+- 25 misclassified images with gradcam outputs
+- ![](C:\Users\rkamathb\Desktop\My work\EVA5\github-folder\EVA5\S10-Assignment-Solution\25-misclassified-images-gradcam.png)
+- 
+
