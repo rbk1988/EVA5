@@ -1,37 +1,53 @@
-# S10-Assignment-Solution
+# S11-Assignment-Solution
 
-Assignment: 
-
-1. Pick your last code
-2. Make sure to Add CutOut to your code. It should come from your transformations (albumentations)
-3. Use this repo: https://github.com/davidtvs/pytorch-lr-finder
-   1. Move LR Finder code to your modules
-   2. Implement LR Finder (for SGD, not for ADAM)
-   3. Implement ReduceLROnPlatea: https://pytorch.org/docs/stable/optim.html#torch.optim.lr_scheduler.ReduceLROnPlateau
-4. Find best LR to train your model
-5. Use SDG with Momentum
-6. Train for 50 Epochs. 
-7. Show Training and Test Accuracy curves
-8. Target 88% Accuracy.
-9. Run GradCAM on the any 25 misclassified images. Make sure you mention what is the prediction and what was the ground truth label.
-10. Submit
-
- 
-
-S10-Assignment-Solution Questions:
-
-1. Paste your S10 Assignment's GitHub Link - 500PTS
-2. Paste the link or upload Training and Test Curves (there should only be 1 graph)- 100PTS
-3. What is the test accuracy of your model? - 150PTS (If you have mentioned training accuracies, please comment on your assignment what is test)
-4. Share the link or upload an image of 25 misclassified images with GradCam results on top of them- 250PTS
+1. Write a code that draws this curve (without the arrows). In submission, you'll upload your drawn curve and code for that.
+2. Write a code which
+   1. uses this new ResNet Architecture for Cifar10:
+      1. PrepLayer - Conv 3x3 s1, p1) >> BN >> RELU [64k]
+      2. Layer1 -
+         1. X = Conv 3x3 (s1, p1) >> MaxPool2D >> BN >> RELU [128k]
+         2. R1 = ResBlock( (Conv-BN-ReLU-Conv-BN-ReLU))(X) [128k] 
+         3. Add(X, R1)
+      3. Layer 2 -
+         1. Conv 3x3 [256k]
+         2. MaxPooling2D
+         3. BN
+         4. ReLU
+      4. Layer 3 -
+         1. X = Conv 3x3 (s1, p1) >> MaxPool2D >> BN >> RELU [512k]
+         2. R2 = ResBlock( (Conv-BN-ReLU-Conv-BN-ReLU))(X) [512k]
+         3. Add(X, R2)
+      5. MaxPooling with Kernel Size 4
+      6. FC Layer 
+      7. SoftMax
+   2. Uses One Cycle Policy such that:
+      1. Total Epochs = 24
+      2. Max at Epoch = 5
+      3. LRMIN = FIND
+      4. LRMAX = FIND
+      5. NO Annihilation
+   3. Uses this transform -RandomCrop 32, 32 (after padding of 4) >> FlipLR >> Followed by CutOut(8, 8)
+   4. Batch size = 512
+   5. Target Accuracy: 90%. 
+   6. The lesser the modular your code is (i.e. more the code you have written in your Colab file), less marks you'd get. 
+3. Questions asked are:
+   1. Upload the code you used to draw your ZIGZAG or CYCLIC TRIANGLE plot.
+   2. Upload your triangle Plot which was drawn with your code.
+   3. Upload the link to your GitHub copy of Colab Code. 
+   4. Upload the github link for the model as described in A11. 
+   5. What is your test accuracy?
 
 ## Solution:
 
-- LRFinder.py : has the logic to implement learning rate finder. The optimal learning rtae was found to be 8.42E-02.
-- ReduceLROnPlateau is used while training the model
-- The model is trained on CIFAR10 dataset for 50 epochs.
-- For the 50th epoch training accuracy was 98.37% and validation accuracy was 91.45%.
-- 25 misclassified images with gradcam outputs
-- ![](C:\Users\rkamathb\Desktop\My work\EVA5\github-folder\EVA5\S10-Assignment-Solution\25-misclassified-images-gradcam.png)
-- 
+- lr_range_test.py : has the logic for running learning rate range test. The min loss was found at lr = 0.0931.
+
+- ![](lr_range_test_plot.png)
+
+- The model was trained using One Cycle Policy. The code used is in OneCycle.py
+
+  
+
+- For the 24th epoch training accuracy was 49.17% and validation accuracy was 49.27%.
+
+  
 
