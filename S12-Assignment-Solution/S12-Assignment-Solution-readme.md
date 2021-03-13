@@ -178,20 +178,20 @@ Questions in S12-Assignment-Solution:
    2. size : Size of the file in kB.
    3. regions : This is a list of regions annotated: Each element here have two attributes:
       1. shape_attributes
-         1. name :  The name of the bounding box shape.
+         1. name :  The name of the bounding box shape.The possible value are "rect","circle","ellipse","polygon" ,"point" and "polyline".
          2. x : x coordinate of the centroid of the bounding box.
          3. y : y coordinate of the centroid  of the bounding box.
          4. width : width of the bounding box.
          5. height : height of the bounding box.
       2. region_attributes
-         1. name : This is the class label.
+         1. name : This is the class label. We can specify the class labels in our dataset as items ina drop-drown list.
          2. type
-         3. image_quality
+         3. image_quality: This field has the following Boolean fields.
             1. good
             2. frontal
             3. good_illumination
    4. file_attributes
-      1. caption
-      2. public_domain
-      3. image_url
+      1. caption: Caption of the image.
+      2. public_domain: a "yes" or "no" field.
+      3. image_url: if the image is accessed as a url not uploaded from the local disk.
 
